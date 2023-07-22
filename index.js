@@ -73,7 +73,7 @@ const authenticateJWT = (req, res, next) => {
   });
 };
 // Create a new plant
-app.post('/plants', async (req, res) => {
+app.post('/plants',authenticateJWT, async (req, res) => {
   try {
     const newPlant = await PlantsModel.createPlant(req.body);
     res.json(newPlant);
@@ -84,7 +84,7 @@ app.post('/plants', async (req, res) => {
 });
 
 // Get all plants
-app.get('/plants',authenticateJWT, async (req, res) => {
+app.get('/plants', async (req, res) => {
   try {
     const plants = await PlantsModel.getAllPlants();
     const sanitizePlants = plants.map((plant) => {
