@@ -1,0 +1,54 @@
+# Dependency directories
+/node_modules/
+/.pnp/
+.pnp.js
+
+# Distribution directories
+/dist/
+/build/
+/out/
+/public/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*~
+
+npm-shrinkwrap.json
+
+# macOS metadata
+.DS_Store
+
+# Windows Thumbs.db files
+Thumbs.db
+
+# IDE settings
+*.idea/workspace.xml
+*.idea/tasks.xml
+*.idea/dictionaries
+*.idea/vcs.xml
+*.idea/jsLibraryMappings.xml
+*.idea/jsLibraryMappings.xml
+*.idea/modules.xml
+*.idea/namespaces
+*.idea/uiDesigner.xml
+*.idea/assetWizardSettings.xml
+*.idea/datasources.xml
+
+# OS-specific files
+npm-debug.log*
+yarn-error.log*
