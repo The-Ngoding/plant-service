@@ -2,6 +2,7 @@ const express = require('express');
 const PlantsModel = require('./models/plant_model');
 const app = express();
 const jwt = require('jsonwebtoken');
+const uuid = require('uuid');
 // Custom logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
@@ -75,6 +76,9 @@ const authenticateJWT = (req, res, next) => {
 // Create a new plant
 app.post('/plants',authenticateJWT, async (req, res) => {
   try {
+    // Generate uuid first and then pass it to createPlant
+    const id = uuid.v4();
+    req.body.uuid = id;
     const newPlant = await PlantsModel.createPlant(req.body);
     res.json(newPlant);
   } catch (error) {
