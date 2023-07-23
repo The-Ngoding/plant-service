@@ -10,9 +10,12 @@ const PlantsModel = {
     return knex('plants').where('id', id).first();
   },
 
+  getByUuid(uuid) {
+    return knex('plants').where('uuid', uuid).first();
+  },
+
   createPlant(plant){
-    knex('plants').insert(plant);
-    return plant; 
+    return knex('plants').insert(plant);
   },
 
   updatePlant(id, updatedPlant) {

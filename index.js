@@ -130,8 +130,9 @@ app.post('/plants',authenticateJWT,upload.single('image'), async (req, res) => {
     const id = uuid.v4();
     req.body.uuid = id;
     req.body.images = req.file.location;
-    const newPlant = await PlantsModel.createPlant(req.body);
-    res.json(newPlant);
+    await PlantsModel.createPlant(req.body);
+    const plantByUUID = await PlantsModel.getByUuid(id);
+    res.json(plantByUUID);
   } catch (error) {
     console.error('Error creating plant:', error);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -165,10 +166,14 @@ app.get('/plants/:id',authenticateJWT, async (req, res) => {
 });
 
 // Update a plant
-app.put('/plants/:id',authenticateJWT, async (req, res) => {
+app.put('/plants/:id',authenticateJWT,upload.single('image'), async (req, res) => {
   const plantId = req.params.id;
   try {
-    const updatedPlant = await PlantsModel.updatePlant(plantId, req.body);
+    if(req.file){
+      req.body.images = req.file.location;
+    };
+   await PlantsModel.updatePlant(plantId, req.body);
+    const updatedPlant = await PlantsModel.getPlantById(plantId);
     res.json(updatedPlant);
   } catch (error) {
     console.error('Error updating plant:', error);
